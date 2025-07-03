@@ -35,6 +35,14 @@ SMODS.Atlas {
 	py = 18,
 }
 
+SMODS.Atlas {
+	key = 'cfawm_planet_cards',
+	path = "cfawm_planet_cards.png",
+	px = 71,
+	py = 95,
+}
+
+
 -- SUITS --
 
 SMODS.Suit {
@@ -356,11 +364,16 @@ SMODS.PokerHand {
     end
 }
 
+-- CONSUMABLES --
+
+-- CONSUMABLES: PLANETS --
+
 SMODS.Consumable {
     key = "hd_189733b",
     set = "Planet",
     cost = 3,
-    pos = { x = 0, y = -1 },
+	atlas = 'cfawm_planet_cards',
+    pos = { x = 0, y = 0 },
     config = { hand_type = 'cfawm_Roundabout' },
     loc_vars = function(self, info_queue, card)
         return {

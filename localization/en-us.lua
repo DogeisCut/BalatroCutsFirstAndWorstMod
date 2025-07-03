@@ -15,7 +15,7 @@ return {
             },
         },
         Planet = {
-            ["cfawm_hd_189733b"] = {
+            ["c_cfawm_hd_189733b"] = {
                 name = 'HD 189733b',
                  text = {
                     "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Level up",
