@@ -417,6 +417,7 @@ SMODS.Consumable {
 -- SHADERS --
 
 SMODS.Shader({key = 'fuming', path = 'fuming.fs'})
+SMODS.Shader({key = 'scafold', path = 'scafold.fs'})
 
 -- EDITIONS --
 
@@ -432,7 +433,7 @@ SMODS.Edition {
         return { vars = { card.edition.chips, card.edition.mult, card.edition.card_limit, card.edition.x_mult } }
     end,
     get_weight = function(self)
-        return G.GAME.edition_rate * self.weight
+        return self.weight
     end,
 	calculate = function(self, card, context)
         if context.pre_joker or (context.main_scoring and context.cardarea == G.play) then
@@ -443,4 +444,24 @@ SMODS.Edition {
             }
         end
     end
+}
+
+SMODS.Edition {
+    key = 'scafold',
+    shader = 'scafold',
+    config = { card_limit = 0.5 },
+	--disable_shadow = true,
+	disable_base_shader = true,
+    in_shop = true,
+	discovered = true,
+    unlocked = true,
+    weight = 10,
+    extra_cost = 4,
+    sound = { sound = "negative", per = 2, vol = 0.4 },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.edition.card_limit } }
+    end,
+    get_weight = function(self)
+        return self.weight
+    end,
 }

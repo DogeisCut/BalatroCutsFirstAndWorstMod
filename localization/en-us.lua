@@ -21,6 +21,33 @@ return {
                     "{X:mult,C:white} X#4# {} Mult",
                 },
             },
+            e_cfawm_fuming_hand = {
+                name = "Fuming",
+                text = {
+                    "{C:chips}+#1#{} chips",
+                    "{C:mult}+#2#{} Mult",
+                    "{C:dark_edition}+#3#{} hand size",
+                    "{X:mult,C:white} X#4# {} Mult",
+                },
+            },
+            e_cfawm_scafold = {
+                name = "Scafold",
+                text = {
+                    "{C:dark_edition}+#1#{} Joker slot",
+                },
+            },
+            e_cfawm_scafold_consumable = {
+                name = "Scafold",
+                text = {
+                    "{C:dark_edition}+#1#{} consumable slot",
+                },
+            },
+            e_cfawm_scafold_hand = {
+                name = "Scafold",
+                text = {
+                    "{C:dark_edition}+#1#{} hand size",
+                },
+            },
         },
         Enhanced = {},
         Joker = {},
@@ -70,6 +97,7 @@ return {
         labels = {
             cfawm_brown_seal = "Brown Seal",
             cfawm_fuming = "Fuming",
+            cfawm_scafold = "Scafold",
         },
         poker_hand_descriptions = {
             cfawm_Funny = {

@@ -10,7 +10,7 @@
 // Values of this variable:
 // self.ARGS.send_to_shader[1] = math.min(self.VT.r*3, 1) + (math.sin(G.TIMERS.REAL/28) + 1) + (self.juice and self.juice.r*20 or 0) + self.tilt_var.amt
 // self.ARGS.send_to_shader[2] = G.TIMERS.REAL
-extern PRECISION vec2 fuming;
+extern PRECISION vec2 scafold;
 
 extern PRECISION number dissolve;
 extern PRECISION number time;
@@ -40,28 +40,28 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     // For all vectors (vec2, vec3, vec4), .rgb is equivalent of .xyz, so uv.y == uv.g
     // .a is last parameter for vec4 (usually the alpha channel - transparency)
 
-    float t = fuming.g * 1.0 + fuming.r * 2.0;
-    float fire = 0.5 + 0.5 * sin(uv.y * 8.0 - t + sin(uv.x * 6.0 + t * 0.7));
-    float fire2 = 0.5 + 0.5 * sin(uv.y * 16.0 + t * 1.2 + cos(uv.x * 10.0 - t * 0.5));
-    float flicker = 0.7 + 0.3 * sin(t * 2.0 + uv.x * 2.0);
-    float core = smoothstep(0.2, 0.7, fire * fire2 * flicker + 0.1 * sin(uv.x * 10.0 + t));
+    // Make colors closer to white more transparent
+    float whiteness = (tex.r + tex.g + tex.b) / 3.0;
+    float alpha_mod = 1.0 - whiteness;
 
-    float r = 1.0;
-    float g = mix(0.1, 0.7, core);
-    float b = mix(0.0, 0.2, core);
+    number low = min(tex.r, min(tex.g, tex.b));
+    number high = max(tex.r, max(tex.g, tex.b));
+    number delta = high-low -0.1;
 
-    float edge = smoothstep(0.7, 1.0, fire * fire2 * flicker);
-    r = mix(r, 1.0, edge);
-    g = mix(g, 0.7, edge);
-    b = mix(b, 0.3, edge);
+    number fac = 0.8 + 0.9*sin(11.*uv.x+4.32*uv.y + scafold.r*12. + cos(scafold.r*5.3 + uv.y*4.2 - uv.x*4.));
+    number fac2 = 0.5 + 0.5*sin(8.*uv.x+2.32*uv.y + scafold.r*5. - cos(scafold.r*2.3 + uv.x*8.2));
+    number fac3 = 0.5 + 0.5*sin(10.*uv.x+5.32*uv.y + scafold.r*6.111 + sin(scafold.r*5.3 + uv.y*3.2));
+    number fac4 = 0.5 + 0.5*sin(3.*uv.x+2.32*uv.y + scafold.r*8.111 + sin(scafold.r*1.3 + uv.y*11.2));
+    number fac5 = sin(0.9*16.*uv.x+5.32*uv.y + scafold.r*12. + cos(scafold.r*5.3 + uv.y*4.2 - uv.x*4.));
 
-    tex.r = r * tex.r;
-    tex.g = g * tex.g;
-    tex.b = b * tex.b;
-    
-    float noise = 0.05 * sin(uv.x * 40.0 + uv.y * 40.0 + t * 3.0);
-    tex.r += noise;
-    tex.g += noise * 0.5;
+    number maxfac = 0.7*max(max(fac, max(fac2, max(fac3,0.0))) + (fac+fac2+fac3*fac4), 0.);
+
+    tex.rgb = tex.rgb - vec3(0.1, 0.15, 0.05)*1.5;
+    tex.rgb = mix(tex.rgb, vec3(1.0), max((1 - maxfac), 0.0));
+    tex.rgb = mix(tex.rgb, vec3(1.0), 0.333);
+
+    tex.a *= (alpha_mod + 0.1) * 2.0;
+    //tex.a = mix(tex.a, 1.0, (1 - maxfac));
 
     // required
     return dissolve_mask(tex*colour, texture_coords, uv);
