@@ -457,6 +457,7 @@ SMODS.Shader({key = 'scafold', path = 'scafold.fs'})
 --     end
 -- }
 
+-- Shows up on regular playing cards for some reason?
 SMODS.Edition {
     key = 'scafold',
     shader = 'scafold',
@@ -478,7 +479,7 @@ SMODS.Edition {
     end,
 }
 
--- EDITIONS --
+-- ENHANCEMENTS --
 
 -- +6 Mult for every turn this stays in your hand
 SMODS.Enhancement {
