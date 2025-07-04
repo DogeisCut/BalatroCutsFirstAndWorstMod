@@ -48,6 +48,14 @@ SMODS.Atlas {
 	py = 95,
 }
 
+if SMODS.Atlas then
+    SMODS.Atlas({
+        key = "modicon",
+        path = "modicon.png",
+        px = 32,
+        py = 32
+    })
+end
 
 -- SUITS --
 
@@ -421,30 +429,30 @@ SMODS.Shader({key = 'scafold', path = 'scafold.fs'})
 
 -- EDITIONS --
 
-SMODS.Edition {
-    key = 'fuming',
-    shader = 'fuming',
-    config = { card_limit = 0.5, x_mult = 1.05, mult = 1.5, chips = 5 },
-    in_shop = true,
-    weight = 2,
-    extra_cost = 8,
-    sound = { sound = "negative", per = 1.1, vol = 0.4 },
-    loc_vars = function(self, info_queue, card)
-        return { vars = { card.edition.chips, card.edition.mult, card.edition.card_limit, card.edition.x_mult } }
-    end,
-    get_weight = function(self)
-        return self.weight
-    end,
-	calculate = function(self, card, context)
-        if context.pre_joker or (context.main_scoring and context.cardarea == G.play) then
-            return {
-                chips = card.edition.chips,
-                mult = card.edition.mult,
-				x_mult = card.edition.x_mult,
-            }
-        end
-    end
-}
+-- SMODS.Edition {
+--     key = 'fuming',
+--     shader = 'fuming',
+--     config = { card_limit = 0.5, x_mult = 1.05, mult = 1.5, chips = 5 },
+--     in_shop = true,
+--     weight = 2,
+--     extra_cost = 8,
+--     sound = { sound = "negative", per = 1.1, vol = 0.4 },
+--     loc_vars = function(self, info_queue, card)
+--         return { vars = { card.edition.chips, card.edition.mult, card.edition.card_limit, card.edition.x_mult } }
+--     end,
+--     get_weight = function(self)
+--         return self.weight
+--     end,
+-- 	calculate = function(self, card, context)
+--         if context.pre_joker or (context.main_scoring and context.cardarea == G.play) then
+--             return {
+--                 chips = card.edition.chips,
+--                 mult = card.edition.mult,
+-- 				x_mult = card.edition.x_mult,
+--             }
+--         end
+--     end
+-- }
 
 SMODS.Edition {
     key = 'scafold',
