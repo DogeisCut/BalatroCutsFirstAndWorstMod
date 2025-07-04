@@ -113,6 +113,7 @@ SMODS.Rank {
         '2',
 		'Ace'
     },
+	strength_effect = { random = true },
 	suit_map = { Hearts = 0, Clubs = 1, Diamonds = 2, Spades = 3, cfawm_Triangles = 4 },
 }
 
@@ -125,8 +126,10 @@ SMODS.Rank {
 	lc_atlas = 'cfawm_0_rank_cards',
 	hc_atlas = 'cfawm_0_rank_hc_cards',
 	next = {
-		'3',
+        '3',
+		'Jack'
     },
+	strength_effect = { fixed = 2 },
 	face = true,
 	pos = { x = 1 },
 	suit_map = { Hearts = 0, Clubs = 1, Diamonds = 2, Spades = 3, cfawm_Triangles = 4 },
@@ -461,11 +464,12 @@ SMODS.Edition {
 	--disable_shadow = true,
 	disable_base_shader = true,
     in_shop = true,
-	discovered = true,
-    unlocked = true,
     weight = 10,
     extra_cost = 4,
     sound = { sound = "negative", per = 2, vol = 0.4 },
+    pools = {
+		["Joker"] = true
+	},
     loc_vars = function(self, info_queue, card)
         return { vars = { card.edition.card_limit } }
     end,
@@ -473,3 +477,20 @@ SMODS.Edition {
         return self.weight
     end,
 }
+
+-- EDITIONS --
+
+-- +6 Mult for every turn this stays in your hand
+SMODS.Enhancement {
+    key = 'charged', -- purple and shiny and kinda zappy
+    atlas = 'cfawm_enhancers',
+	pos = { x = 1, y = 0 },
+}
+
+-- JOKERS --
+
+-- something that does something to 0 cards
+
+-- DECKS/BACKS --
+
+-- Kingdom Deck, contains several face cards in place of the numbered cards
