@@ -274,7 +274,7 @@ SMODS.PokerHand {
 	l_chips = 15,
 	example = {
 		{ 'S_5', true },
-		{ 'TRI_9', true },
+		{ 'cfawm_TRI_9', true },
 		{ 'D_8', true },
 		{ 'H_2', true },
 		{ 'C_7', true }
