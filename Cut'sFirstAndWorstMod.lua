@@ -6,6 +6,13 @@ SMODS.Atlas {
     px = 71,
 	py = 95,
 }
+SMODS.Atlas {
+    key = 'cfawm_cards_hc',
+    path = "cfawm_cards_hc.png",
+    px = 71,
+	py = 95,
+}
+
 
 SMODS.Atlas {
 	key = 'cfawm_enhancers',
@@ -20,7 +27,6 @@ SMODS.Atlas {
 	px = 71,
 	py = 95,
 }
-
 SMODS.Atlas {
 	key = 'cfawm_0_rank_hc_cards',
 	path = "cfawm_0_rank_hc_cards.png",
@@ -50,15 +56,15 @@ SMODS.Suit {
 	card_key = 'TRI',
 
 	lc_atlas = 'cfawm_cards',
-	hc_atlas = 'cfawm_cards',
+	hc_atlas = 'cfawm_cards_hc',
 	lc_ui_atlas = 'cfawm_ui',
-	hc_ui_atlas = 'cfawm_ui',
+	hc_ui_atlas = 'cfawm_ui_hc',
 
 	pos = { y = 0 },
 	ui_pos = { x = 0, y = 0 },
 
-	lc_colour = HEX('67f034'),
-	hc_colour = HEX('67f034'),
+	lc_colour = HEX('57912B'),
+	hc_colour = HEX('74E353'),
 }
 
 -- RANKS --
@@ -316,7 +322,7 @@ SMODS.PokerHand {
         { 'cfawm_TRI_9', true },
         { 'D_4', true },
         { 'H_2', true },
-        { 'C_0', true }
+        { 'C_cfawm_0', true }
     },
     evaluate = function(parts, hand)
         if not next(parts.cfawm_funny) or not next(parts.cfawm_roundabout) then return {} end
@@ -356,7 +362,7 @@ SMODS.PokerHand {
         { 'D_9', true },
         { 'D_4', true },
         { 'D_2', true },
-        { 'D_0', true }
+        { 'D_cfawm_0', true }
     },
     evaluate = function(parts, hand)
         if #parts.cfawm_funny or not next(parts._flush) then return {} end
@@ -385,5 +391,56 @@ SMODS.Consumable {
                 colours = { (G.GAME.hands[card.ability.hand_type].level == 1 and G.C.UI.TEXT_DARK or G.C.HAND_LEVELS[math.min(7, G.GAME.hands[card.ability.hand_type].level)]) }
             }
         }
+    end
+}
+
+SMODS.Consumable {
+    key = "wasp-12b",
+    set = "Planet",
+    cost = 5,
+	atlas = 'cfawm_planet_cards',
+    pos = { x = 1, y = 0 },
+    config = { hand_type = 'cfawm_Funny' },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {
+                G.GAME.hands[card.ability.hand_type].level,
+                localize(card.ability.hand_type, 'poker_hands'),
+                G.GAME.hands[card.ability.hand_type].l_mult,
+                G.GAME.hands[card.ability.hand_type].l_chips,
+                colours = { (G.GAME.hands[card.ability.hand_type].level == 1 and G.C.UI.TEXT_DARK or G.C.HAND_LEVELS[math.min(7, G.GAME.hands[card.ability.hand_type].level)]) }
+            }
+        }
+    end
+}
+
+-- SHADERS --
+
+SMODS.Shader({key = 'fuming', path = 'fuming.fs'})
+
+-- EDITIONS --
+
+SMODS.Edition {
+    key = 'fuming',
+    shader = 'fuming',
+    config = { card_limit = 0.5, x_mult = 1.05, mult = 1.5, chips = 5 },
+    in_shop = true,
+    weight = 2,
+    extra_cost = 8,
+    sound = { sound = "negative", per = 1.1, vol = 0.4 },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.edition.chips, card.edition.mult, card.edition.card_limit, card.edition.x_mult } }
+    end,
+    get_weight = function(self)
+        return G.GAME.edition_rate * self.weight
+    end,
+	calculate = function(self, card, context)
+        if context.pre_joker or (context.main_scoring and context.cardarea == G.play) then
+            return {
+                chips = card.edition.chips,
+                mult = card.edition.mult,
+				x_mult = card.edition.x_mult,
+            }
+        end
     end
 }

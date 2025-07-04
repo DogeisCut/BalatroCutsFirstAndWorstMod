@@ -2,7 +2,26 @@ return {
     descriptions = {
         Back = {},
         Blind = {},
-        Edition = {},
+        Edition = {
+            e_cfawm_fuming = {
+                name = "Fuming",
+                text = {
+                    "{C:chips}+#1#{} chips",
+                    "{C:mult}+#2#{} Mult",
+                    "{C:dark_edition}+#3#{} Joker slot",
+                    "{X:mult,C:white} X#4# {} Mult",
+                },
+            },
+            e_cfawm_fuming_consumable = {
+                name = "Fuming",
+                text = {
+                    "{C:chips}+#1#{} chips",
+                    "{C:mult}+#2#{} Mult",
+                    "{C:dark_edition}+#3#{} consumable slot",
+                    "{X:mult,C:white} X#4# {} Mult",
+                },
+            },
+        },
         Enhanced = {},
         Joker = {},
         Other = {
@@ -18,6 +37,15 @@ return {
             ["c_cfawm_hd_189733b"] = {
                 name = 'HD 189733b',
                  text = {
+                    "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Level up",
+                    "{C:attention}#2#",
+                    "{C:mult}+#3#{} Mult and",
+                    "{C:chips}+#4#{} chips",
+                },
+            },
+            ["c_cfawm_wasp-12b"] = {
+                name = 'WASP-12b',
+                text = {
                     "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Level up",
                     "{C:attention}#2#",
                     "{C:mult}+#3#{} Mult and",
@@ -41,6 +69,7 @@ return {
         high_scores = {},
         labels = {
             cfawm_brown_seal = "Brown Seal",
+            cfawm_fuming = "Fuming",
         },
         poker_hand_descriptions = {
             cfawm_Funny = {
