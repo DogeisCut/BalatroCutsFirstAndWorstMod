@@ -146,38 +146,39 @@ SMODS.Rank {
 
 -- SEALS --
 
-SMODS.Seal {
-	key = 'Brown',
-	atlas = 'cfawm_enhancers',
-	pos = { x = 0, y = 0 },
-	badge_colour = HEX('a0522d'),
-	calculate = function(self, card, context)
-		if context.discard and context.other_card == card then
-            G.E_MANAGER:add_event(Event({
-				trigger = 'before',
-                delay = 0.0,
-				func = function()
-					local any_selected = nil
-					local this_index = nil
-					for i, playing_card in ipairs(G.hand.cards) do
-						if playing_card == card then
-							this_index = i
-							break
-						end
-					end
-					if this_index and G.hand.cards[this_index + 1] then
-						G.hand:add_to_highlighted(G.hand.cards[this_index + 1], true)
-						play_sound('card1', 1)
-						any_selected = true
-					end
-					if any_selected then G.FUNCS.discard_cards_from_highlighted(nil, true) end
-					return true
-				end
-			}))
-			return { message = "Discarded!", colour = HEX('a0522d') }
-		end
-	end,
-}
+-- waaaaa why did you have to be borken on me :(
+-- SMODS.Seal {
+-- 	key = 'Brown',
+-- 	atlas = 'cfawm_enhancers',
+-- 	pos = { x = 0, y = 0 },
+-- 	badge_colour = HEX('a0522d'),
+-- 	calculate = function(self, card, context)
+-- 		if context.discard and context.other_card == card then
+--             G.E_MANAGER:add_event(Event({
+-- 				trigger = 'before',
+--                 delay = 0.0,
+-- 				func = function()
+-- 					local any_selected = nil
+-- 					local this_index = nil
+-- 					for i, playing_card in ipairs(G.hand.cards) do
+-- 						if playing_card == card then
+-- 							this_index = i
+-- 							break
+-- 						end
+-- 					end
+-- 					if this_index and G.hand.cards[this_index + 1] then
+-- 						G.hand:add_to_highlighted(G.hand.cards[this_index + 1], true)
+-- 						play_sound('card1', 1)
+-- 						any_selected = true
+-- 					end
+-- 					if any_selected then G.FUNCS.discard_cards_from_highlighted(nil, true) end
+-- 					return true
+-- 				end
+-- 			}))
+-- 			return { message = "Discarded!", colour = HEX('a0522d') }
+-- 		end
+-- 	end,
+-- }
 
 -- POKER HAND PARTS --
 
@@ -519,8 +520,29 @@ SMODS.Edition {
 --     end,
 -- }
 
+-- The seal this is tied to is currently broken, will add later if i ever figure that out.
+-- SMODS.Back {
+--     key = "brown_seal",
+--     pos = { x = 0, y = 0 },
+--     config = {},
+--     atlas = 'cfawm_backs',
+--     loc_vars = function(self, info_queue, back)
+--         return { vars = { } }
+--     end,
+--     apply = function(self, back)
+--         G.E_MANAGER:add_event(Event({
+--             func = function()
+--                 for _, card in pairs(G.playing_cards) do
+-- 					card:set_seal('cfawm_Brown', true, true)
+--                 end
+--                 return true
+--             end
+--         }))
+--     end,
+-- }
+
 SMODS.Back {
-    key = "brown_seal",
+    key = "periwinkle_seal",
     pos = { x = 0, y = 0 },
     config = {},
     atlas = 'cfawm_backs',
@@ -531,7 +553,7 @@ SMODS.Back {
         G.E_MANAGER:add_event(Event({
             func = function()
                 for _, card in pairs(G.playing_cards) do
-					card:set_seal('cfawm_Brown', true, true)
+					card:set_seal('cfawm_Periwinkle', true, true)
                 end
                 return true
             end
