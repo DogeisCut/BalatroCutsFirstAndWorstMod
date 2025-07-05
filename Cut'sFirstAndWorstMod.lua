@@ -180,6 +180,16 @@ SMODS.Rank {
 -- 	end,
 -- }
 
+SMODS.Seal {
+	key = 'Periwinkle',
+	atlas = 'cfawm_enhancers',
+	pos = { x = 1, y = 0 },
+	badge_colour = HEX('CCCCFF'),
+	calculate = function(self, card, context)
+
+	end,
+}
+
 -- POKER HAND PARTS --
 
 SMODS.PokerHandPart {
@@ -543,7 +553,7 @@ SMODS.Edition {
 
 SMODS.Back {
     key = "periwinkle_seal",
-    pos = { x = 0, y = 0 },
+    pos = { x = 1, y = 0 },
     config = {},
     atlas = 'cfawm_backs',
     loc_vars = function(self, info_queue, back)

@@ -1,10 +1,16 @@
 return {
     descriptions = {
         Back = {
-            b_cfawm_brown_seal = {
-                name = "Brown Seal",
+            -- b_cfawm_brown_seal = {
+            --     name = "Brown Seal",
+            --     text = {
+            --         "Oops! All Brown Seal",
+            --     },
+            -- },
+            b_cfawm_periwinkle_seal = {
+                name = "Periwinkle Seal",
                 text = {
-                    "Oops! All Brown Seal",
+                    "Oops! All Periwinkle Seal",
                 },
             }
         },
@@ -13,8 +19,10 @@ return {
             e_cfawm_acetate = {
                 name = "Acetate",
                 text = {
-                    "When scored, on top of its own scoring, this card scores",
-                    "{C:attention}#1#%{} of the previously scored card's {C:chips}chips{} and {C:mult}mult{}.",
+                    "When scored, on top of its",
+                    "own scoring, this card scores",
+                    "{C:attention}#1#%{} of the previously",
+                    "scored card's {C:chips}chips{} and {C:mult}mult{}.",
                 },
             },
              e_cfawm_unkempt = {
@@ -27,11 +35,17 @@ return {
         Enhanced = {},
         Joker = {},
         Other = {
-            cfawm_brown_seal = {
-                name = 'Brown Seal',
+            -- cfawm_brown_seal = {
+            --     name = 'Brown Seal',
+            --     text = {
+            --         'Discards (with effects) the card to the',
+            --         'right when {C:attention}discarded.',
+            --     },
+            -- },
+            cfawm_periwinkle_seal = {
+                name = 'Periwinkle Seal',
                 text = {
-                    'Discards the card to the',
-                    'right when {C:attention}discarded.',
+                    "Doesn't do much at the moment."
                 },
             },
         },
@@ -70,7 +84,8 @@ return {
         dictionary = {},
         high_scores = {},
         labels = {
-            cfawm_brown_seal = "Brown Seal",
+            --cfawm_brown_seal = "Brown Seal",
+            cfawm_periwinkle_seal = "Periwinkle Seal",
             cfawm_acetate = "Acetate",
             e_cfawm_unkempt = "Unkempt"
         },
