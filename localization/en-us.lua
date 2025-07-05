@@ -1,51 +1,26 @@
 return {
     descriptions = {
-        Back = {},
+        Back = {
+            b_cfawm_brown_seal = {
+                name = "Brown Seal",
+                text = {
+                    "Oops! All Brown Seal",
+                },
+            }
+        },
         Blind = {},
         Edition = {
-            e_cfawm_fuming = {
-                name = "Fuming",
+            e_cfawm_acetate = {
+                name = "Acetate",
                 text = {
-                    "{C:chips}+#1#{} chips",
-                    "{C:mult}+#2#{} Mult",
-                    "{C:dark_edition}+#3#{} Joker slot",
-                    "{X:mult,C:white} X#4# {} Mult",
+                    "When scored, on top of its own scoring, this card scores",
+                    "{C:attention}#1#%{} of the previously scored card's {C:chips}chips{} and {C:mult}mult{}.",
                 },
             },
-            e_cfawm_fuming_consumable = {
-                name = "Fuming",
+             e_cfawm_unkempt = {
+                name = "Unkempt",
                 text = {
-                    "{C:chips}+#1#{} chips",
-                    "{C:mult}+#2#{} Mult",
-                    "{C:dark_edition}+#3#{} consumable slot",
-                    "{X:mult,C:white} X#4# {} Mult",
-                },
-            },
-            e_cfawm_fuming_hand = {
-                name = "Fuming",
-                text = {
-                    "{C:chips}+#1#{} chips",
-                    "{C:mult}+#2#{} Mult",
-                    "{C:dark_edition}+#3#{} hand size",
-                    "{X:mult,C:white} X#4# {} Mult",
-                },
-            },
-            e_cfawm_scafold = {
-                name = "Scafold",
-                text = {
-                    "{C:dark_edition}+#1#{} Joker slot",
-                },
-            },
-            e_cfawm_scafold_consumable = {
-                name = "Scafold",
-                text = {
-                    "{C:dark_edition}+#1#{} consumable slot",
-                },
-            },
-            e_cfawm_scafold_hand = {
-                name = "Scafold",
-                text = {
-                    "{C:dark_edition}+#1#{} hand size",
+                    "Doesn't do much at the moment."
                 },
             },
         },
@@ -96,8 +71,8 @@ return {
         high_scores = {},
         labels = {
             cfawm_brown_seal = "Brown Seal",
-            cfawm_fuming = "Fuming",
-            cfawm_scafold = "Scafold",
+            cfawm_acetate = "Acetate",
+            e_cfawm_unkempt = "Unkempt"
         },
         poker_hand_descriptions = {
             cfawm_Funny = {

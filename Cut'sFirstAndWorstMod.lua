@@ -1,3 +1,5 @@
+-- PATCHES --
+
 -- ATLASES --
 
 SMODS.Atlas {
@@ -44,6 +46,13 @@ SMODS.Atlas {
 SMODS.Atlas {
 	key = 'cfawm_planet_cards',
 	path = "cfawm_planet_cards.png",
+	px = 71,
+	py = 95,
+}
+
+SMODS.Atlas {
+	key = 'cfawm_backs',
+	path = "cfawm_backs.png",
 	px = 71,
 	py = 95,
 }
@@ -144,7 +153,9 @@ SMODS.Seal {
 	badge_colour = HEX('a0522d'),
 	calculate = function(self, card, context)
 		if context.discard and context.other_card == card then
-			G.E_MANAGER:add_event(Event({
+            G.E_MANAGER:add_event(Event({
+				trigger = 'before',
+                delay = 0.0,
 				func = function()
 					local any_selected = nil
 					local this_index = nil
@@ -163,8 +174,7 @@ SMODS.Seal {
 					return true
 				end
 			}))
-			delay(1)
-			return {}
+			return { message = "Discarded!", colour = HEX('a0522d') }
 		end
 	end,
 }
@@ -427,52 +437,41 @@ SMODS.Consumable {
 
 -- SHADERS --
 
-SMODS.Shader({key = 'fuming', path = 'fuming.fs'})
-SMODS.Shader({key = 'scafold', path = 'scafold.fs'})
+SMODS.Shader({ key = 'acetate', path = 'acetate.fs' })
+SMODS.Shader({ key = 'unkempt', path = 'unkempt.fs' })
 
 -- EDITIONS --
 
--- SMODS.Edition {
---     key = 'fuming',
---     shader = 'fuming',
---     config = { card_limit = 0.5, x_mult = 1.05, mult = 1.5, chips = 5 },
---     in_shop = true,
---     weight = 2,
---     extra_cost = 8,
---     sound = { sound = "negative", per = 1.1, vol = 0.4 },
---     loc_vars = function(self, info_queue, card)
---         return { vars = { card.edition.chips, card.edition.mult, card.edition.card_limit, card.edition.x_mult } }
---     end,
---     get_weight = function(self)
---         return self.weight
---     end,
--- 	calculate = function(self, card, context)
---         if context.pre_joker or (context.main_scoring and context.cardarea == G.play) then
---             return {
---                 chips = card.edition.chips,
---                 mult = card.edition.mult,
--- 				x_mult = card.edition.x_mult,
---             }
---         end
---     end
--- }
-
--- Shows up on regular playing cards for some reason?
 SMODS.Edition {
-    key = 'scafold',
-    shader = 'scafold',
-    config = { card_limit = 0.5 },
+    key = 'acetate',
+    shader = 'acetate',
+    config = { },
 	--disable_shadow = true,
 	disable_base_shader = true,
     in_shop = true,
-    weight = 10,
+    weight = 20,
     extra_cost = 4,
     sound = { sound = "negative", per = 2, vol = 0.4 },
-    pools = {
-		["Joker"] = true
-	},
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.edition.card_limit } }
+        return { vars = {  } }
+    end,
+    get_weight = function(self)
+        return self.weight
+    end,
+}
+
+SMODS.Edition {
+    key = 'unkempt',
+    shader = 'unkempt',
+    config = {  },
+	--disable_shadow = true,
+	disable_base_shader = true,
+    in_shop = true,
+    weight = 20,
+    extra_cost = 4,
+    sound = { sound = "negative", per = 0.5, vol = 0.4 },
+    loc_vars = function(self, info_queue, card)
+        return { vars = {  } }
     end,
     get_weight = function(self)
         return self.weight
@@ -482,11 +481,11 @@ SMODS.Edition {
 -- ENHANCEMENTS --
 
 -- +6 Mult for every turn this stays in your hand
-SMODS.Enhancement {
-    key = 'charged', -- purple and shiny and kinda zappy
-    atlas = 'cfawm_enhancers',
-	pos = { x = 1, y = 0 },
-}
+-- SMODS.Enhancement {
+--     key = 'charged', -- purple and shiny and kinda zappy
+--     atlas = 'cfawm_enhancers',
+-- 	pos = { x = 1, y = 0 },
+-- }
 
 -- JOKERS --
 
@@ -494,4 +493,52 @@ SMODS.Enhancement {
 
 -- DECKS/BACKS --
 
--- Kingdom Deck, contains several face cards in place of the numbered cards
+-- Kingdom Deck: Contains several face cards in place of the numbered cards
+-- Brown Seal Deck: Oops! All Brown seals!
+-- Acetate Deck: Oops! All Acetate Edition!
+
+-- SMODS.Back {
+--     key = "kingdom",
+--     pos = { x = 0, y = 0 },
+--     config = {  },
+--     loc_vars = function(self, info_queue, back)
+--         return { vars = { } }
+--     end,
+--     apply = function(self, back)
+--         G.E_MANAGER:add_event(Event({
+--             func = function()
+--                 for _, card in pairs(G.playing_cards) do
+-- 					local to_transform
+--                     if card:get_id() then
+--                         card:change_suit('Spades')
+--                     end
+--                 end
+--                 return true
+--             end
+--         }))
+--     end,
+-- }
+
+SMODS.Back {
+    key = "brown_seal",
+    pos = { x = 0, y = 0 },
+    config = {},
+    atlas = 'cfawm_backs',
+    loc_vars = function(self, info_queue, back)
+        return { vars = { } }
+    end,
+    apply = function(self, back)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                for _, card in pairs(G.playing_cards) do
+					card:set_seal('cfawm_Brown', true, true)
+                end
+                return true
+            end
+        }))
+    end,
+}
+
+-- STICKERS --
+
+-- Heavy: Takes up an additional card slot.
