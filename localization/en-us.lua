@@ -10,7 +10,8 @@ return {
             b_cfawm_periwinkle_seal = {
                 name = "Redemption Deck",
                 text = {
-                    "All playing cards have a {C:attention,T:cfawm_Periwinkle}Periwinkle Seal",
+                    "All playing cards",
+                    "have a {C:attention,T:cfawm_Periwinkle}Periwinkle Seal",
                     "{C:blue}#1#{} hand",
                     "every round",
                 },
@@ -18,7 +19,8 @@ return {
             b_cfawm_cardboard_seal = {
                 name = "Recycling Deck",
                 text = {
-                    "All playing cards have a {C:attention,T:cfawm_Cardboard}Cardboard Seal",
+                    "All playing cards",
+                    "have a {C:attention,T:cfawm_Cardboard}Cardboard Seal",
                     "{C:red}#1#{} discard",
                     "every round",
                 },
@@ -26,7 +28,7 @@ return {
             b_cfawm_acetate = {
                 name = "Deck of Transparency",
                 text = {
-                    "All cards are {C:edition,T:e_cfawm_acetate}Acetate Cards",
+                    "All cards are {C:dark_edition,T:e_cfawm_acetate}Acetate Cards",
                     "{C:red}#1#{} discard",
                     "{C:blue}#2#{} hand",
                     "every round",
@@ -75,6 +77,12 @@ return {
                 text = {
                     "Each played {C:attention}Zero{} gives",
                     "{X:mult,C:white} X#1# {} Mult when scored",
+                },
+            },
+            j_cfawm_sine_wave = {
+                name = "Sine Wave",
+                text = {
+                    "",
                 },
             },
         },
@@ -127,8 +135,34 @@ return {
         },
         Spectral = {},
         Stake = {},
-        Tag = {},
-        Tarot = {},
+        Tag = {
+            tag_cfawm_acetate = {
+                name = "Acetate Tag",
+                text = {
+                    "Next base edition shop",
+                    "Joker is free and",
+                    "becomes {C:dark_edition}Acetate",
+                },
+            },
+            tag_cfawm_unkempt = {
+                name = "Unkempt Tag",
+                text = {
+                    "Next base edition shop",
+                    "Joker is free and",
+                    "becomes {C:dark_edition}Unkempt",
+                },
+            },
+        },
+        Tarot = {
+            c_cfawm_lightning = {
+                name = "The Lightning",
+                text = {
+                    "Enhances {C:attention}#1#",
+                    "selected cards to",
+                    "{C:attention}#2#s",
+                },
+            },
+        },
         Voucher = {},
     },
     misc = {
