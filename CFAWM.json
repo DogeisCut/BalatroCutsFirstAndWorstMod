@@ -1,0 +1,16 @@
+{
+	"id": "CutsFirstAndWorstMod",
+	"name": "Cut's First And Worst Mod (CFAWM)",
+	"display_name": "CFAWM",
+	"author": ["DogeisCut"],
+	"description": "Adding at least one of everything. Balance is optional. Are you prepared?",
+	"prefix": "cfawm",
+	"main_file": "CFAWM.lua",
+	"badge_colour": "f562e6",
+	"badge_text_colour": "ffea00",
+	"version": "1.0.0",
+	"dependencies": [
+        "Steamodded (>=1.*)",
+        "Lovely (>=0.6)"
+    ]
+}

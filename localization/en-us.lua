@@ -17,7 +17,7 @@ return {
                 },
             },
             b_cfawm_cardboard_seal = {
-                name = "Recycling Deck",
+                name = "Recycle Deck",
                 text = {
                     "All playing cards",
                     "have a {C:attention,T:cfawm_Cardboard}Cardboard Seal",
@@ -29,6 +29,15 @@ return {
                 name = "Deck of Transparency",
                 text = {
                     "All cards are {C:dark_edition,T:e_cfawm_acetate}Acetate Cards",
+                    "{C:red}#1#{} discard",
+                    "{C:blue}#2#{} hand",
+                    "every round",
+                },
+            },
+            b_cfawm_unkempt = {
+                name = "Deck of Filth",
+                text = {
+                    "All cards are {C:dark_edition,T:e_cfawm_unkempt}Unkempt Cards",
                     "{C:red}#1#{} discard",
                     "{C:blue}#2#{} hand",
                     "every round",
