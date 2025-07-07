@@ -10,7 +10,7 @@ return {
             b_cfawm_periwinkle_seal = {
                 name = "Periwinkle Seal Deck",
                 text = {
-                    "Oops! All {T:cfawm_periwinkle_seal}Periwinkle Seal",
+                    "Oops! All {C:attention,T:cfawm_Periwinkle}Periwinkle Seal",
                     "{C:blue}#1#{} hand",
                     "every round",
                 },
@@ -18,7 +18,7 @@ return {
             b_cfawm_cardboard_seal = {
                 name = "Cardboard Seal Deck",
                 text = {
-                    "Oops! All {T:cfawm_cardboard_seal}Cardboard Seal",
+                    "Oops! All {C:attention,T:cfawm_Cardboard}Cardboard Seal",
                     "{C:red}#1#{} discard",
                     "every round",
                 },
@@ -26,9 +26,17 @@ return {
             b_cfawm_acetate = {
                 name = "Acetate Deck",
                 text = {
-                    "Oops! All {T:e_cfawm_acetate}Acetate",
+                    "Oops! All {C:attention,T:e_cfawm_acetate}Acetate",
                     "{C:red}#1#{} discard",
                     "{C:blue}#2#{} hand",
+                    "every round",
+                },
+            },
+            b_cfawm_charged = {
+                name = "Charged Deck",
+                text = {
+                    "Oops! All {C:attention,T:m_cfawm_charged}Charged",
+                    "{C:blue}#1#{} hand",
                     "every round",
                 },
             }
@@ -50,7 +58,16 @@ return {
                 },
             },
         },
-        Enhanced = {},
+        Enhanced = {
+            m_cfawm_charged = {
+                name = "Charged Card",
+                text = {
+                    "{C:mult}+#1#{} Mult for every played",
+                    "hand this stays in hand",
+                    "{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)",
+                },
+            },
+        },
         Joker = {
             j_cfawm_digit_joker = {
                 name = "Digit Joker",

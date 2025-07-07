@@ -71,6 +71,20 @@ SMODS.Atlas {
 	py = 95,
 }
 
+SMODS.Atlas {
+	key = 'cfawm_tags',
+	path = "cfawm_tags.png",
+	px = 34,
+	py = 34,
+}
+
+SMODS.Atlas {
+	key = 'cfawm_tarots',
+	path = "cfawm_tarots.png",
+	px = 71,
+	py = 95,
+}
+
 -- SUITS --
 
 SMODS.Suit {
@@ -535,7 +549,7 @@ SMODS.Shader({ key = 'unkempt', path = 'unkempt.fs' })
 SMODS.Edition {
     key = 'acetate',
     shader = 'acetate',
-    config = { score_passthrough = 0.5 },
+    config = { extra = { score_passthrough = 0.5 } },
 	--disable_shadow = true,
 	disable_base_shader = true,
     in_shop = true,
@@ -543,14 +557,14 @@ SMODS.Edition {
     extra_cost = 3,
     sound = { sound = "negative", per = 2, vol = 0.4 },
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.edition.score_passthrough } }
+        return { vars = { card.edition.extra.score_passthrough } }
     end,
     get_weight = function(self)
         return self.weight
     end,
 	calculate = function(self, card, context)
 		if (context.main_scoring and context.cardarea == G.play) or context.pre_joker then
-            local passthrough = card.edition.score_passthrough or 0
+            local passthrough = card.edition.extra.score_passthrough or 0
 			local mult = math.ceil(mult * passthrough)
             local chips = math.ceil(hand_chips * passthrough)
 			return {
@@ -561,32 +575,51 @@ SMODS.Edition {
 	end,
 }
 
--- SMODS.Edition {
---     key = 'unkempt',
---     shader = 'unkempt',
---     config = {  },
--- 	--disable_shadow = true,
--- 	disable_base_shader = true,
---     in_shop = true,
---     weight = 20,
---     extra_cost = 2,
---     sound = { sound = "negative", per = 0.5, vol = 0.4 },
---     loc_vars = function(self, info_queue, card)
---         return { vars = {  } }
---     end,
---     get_weight = function(self)
---         return self.weight
---     end,
--- }
+SMODS.Edition {
+    key = 'unkempt',
+    shader = 'unkempt',
+    config = {  },
+	--disable_shadow = true,
+	disable_base_shader = true,
+    in_shop = true,
+    weight = 20,
+    extra_cost = 2,
+    sound = { sound = "negative", per = 0.5, vol = 0.4 },
+    loc_vars = function(self, info_queue, card)
+        return { vars = {  } }
+    end,
+    get_weight = function(self)
+        return self.weight
+    end,
+}
 
 -- ENHANCEMENTS --
 
 -- +6 Mult for every turn this stays in your hand
--- SMODS.Enhancement {
---     key = 'charged', -- purple and shiny and kinda zappy
---     atlas = 'cfawm_enhancers',
--- 	pos = { x = 1, y = 0 },
--- }
+SMODS.Enhancement {
+    key = 'charged',
+    atlas = 'cfawm_enhancers',
+    pos = { x = 0, y = 1 },
+    config = { extra = { mult_over_time = 3, current_mult_over_time = 3 } },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.mult_over_time, card.ability.extra.current_mult_over_time } }
+    end,
+    calculate = function(self, card, context)
+        if context.main_scoring and context.cardarea == G.play then
+            return {
+                mult = card.ability.extra.current_mult_over_time
+            }
+        end
+        if context.final_scoring_step and context.cardarea == G.hand then
+            card.ability.extra.current_mult_over_time =
+            card.ability.extra.current_mult_over_time + card.ability.extra.mult_over_time
+            return {
+                message = 'Upgrade!',
+                colour = HEX('A681FF')
+            }
+        end
+    end
+}
 
 -- Some sort of ehancment that swaps out the base chip scoring on a card for mult.
 
@@ -727,6 +760,27 @@ SMODS.Back {
     end,
 }
 
+SMODS.Back {
+    key = "charged",
+    pos = { x = 4, y = 0 },
+    config = { hands = -1 },
+    atlas = 'cfawm_backs',
+    loc_vars = function(self, info_queue, back)
+        --info_queue[#info_queue+1] = G.P_CENTERS.m_cfawm_charged
+        return { vars = { self.config.hands } }
+    end,
+    apply = function(self, back)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                for _, card in pairs(G.playing_cards) do
+					card:set_ability(G.P_CENTERS.m_cfawm_charged, true, true)
+                end
+                return true
+            end
+        }))
+    end,
+}
+
 -- SMODS.Back {
 --     key = "packing",
 --     pos = { x = 1, y = 0 },
@@ -751,3 +805,76 @@ SMODS.Back {
 -- STICKERS --
 
 -- Heavy: Takes up an additional card slot.
+
+-- TAGS --
+
+SMODS.Tag {
+    key = "acetate",
+    min_ante = 1,
+    atlas = 'cfawm_tags',
+    pos = { x = 0, y = 0 },
+    loc_vars = function(self, info_queue, tag)
+        info_queue[#info_queue + 1] = G.P_CENTERS.e_cfawm_acetate
+    end,
+    apply = function(self, tag, context)
+        if context.type == 'store_joker_modify' then
+            if not context.card.edition and not context.card.temp_edition and context.card.ability.set == 'Joker' then
+                local lock = tag.ID
+                G.CONTROLLER.locks[lock] = true
+                context.card.temp_edition = true
+                tag:yep('+', G.C.DARK_EDITION, function()
+                    context.card.temp_edition = nil
+                    context.card:set_edition("e_cfawm_acetate", true)
+                    context.card.ability.couponed = true
+                    context.card:set_cost()
+                    G.CONTROLLER.locks[lock] = nil
+                    return true
+                end)
+                tag.triggered = true
+                return true
+            end
+        end
+    end
+}
+
+SMODS.Tag {
+    key = "unkempt",
+    atlas = 'cfawm_tags',
+    pos = { x = 1, y = 0 },
+    loc_vars = function(self, info_queue, tag)
+        info_queue[#info_queue + 1] = G.P_CENTERS.e_cfawm_unkempt
+    end,
+    apply = function(self, tag, context)
+        if context.type == 'store_joker_modify' then
+            if not context.card.edition and not context.card.temp_edition and context.card.ability.set == 'Joker' then
+                local lock = tag.ID
+                G.CONTROLLER.locks[lock] = true
+                context.card.temp_edition = true
+                tag:yep('+', G.C.DARK_EDITION, function()
+                    context.card.temp_edition = nil
+                    context.card:set_edition("e_cfawm_unkempt", true)
+                    context.card.ability.couponed = true
+                    context.card:set_cost()
+                    G.CONTROLLER.locks[lock] = nil
+                    return true
+                end)
+                tag.triggered = true
+                return true
+            end
+        end
+    end
+}
+
+-- TAROTS --
+
+SMODS.Consumable {
+    key = 'lightning',
+    set = 'Tarot',
+    atlas = 'cfawm_tarots',
+    pos = { x = 0, y = 0 },
+    config = { max_highlighted = 2, mod_conv = 'm_cfawm_charged' },
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.mod_conv]
+        return { vars = { card.ability.max_highlighted, localize { type = 'name_text', set = 'Enhanced', key = card.ability.mod_conv } } }
+    end
+}
