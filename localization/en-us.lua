@@ -8,34 +8,35 @@ return {
             --     },
             -- },
             b_cfawm_periwinkle_seal = {
-                name = "Periwinkle Seal Deck",
+                name = "Redemption Deck",
                 text = {
-                    "Oops! All {C:attention,T:cfawm_Periwinkle}Periwinkle Seal",
+                    "All playing cards have a {C:attention,T:cfawm_Periwinkle}Periwinkle Seal",
                     "{C:blue}#1#{} hand",
                     "every round",
                 },
             },
             b_cfawm_cardboard_seal = {
-                name = "Cardboard Seal Deck",
+                name = "Recycling Deck",
                 text = {
-                    "Oops! All {C:attention,T:cfawm_Cardboard}Cardboard Seal",
+                    "All playing cards have a {C:attention,T:cfawm_Cardboard}Cardboard Seal",
                     "{C:red}#1#{} discard",
                     "every round",
                 },
             },
             b_cfawm_acetate = {
-                name = "Acetate Deck",
+                name = "Deck of Transparency",
                 text = {
-                    "Oops! All {C:attention,T:e_cfawm_acetate}Acetate",
+                    "All cards are {C:edition,T:e_cfawm_acetate}Acetate Cards",
                     "{C:red}#1#{} discard",
                     "{C:blue}#2#{} hand",
                     "every round",
                 },
             },
             b_cfawm_charged = {
-                name = "Charged Deck",
+                name = "The Electrician's Deck",
                 text = {
-                    "Oops! All {C:attention,T:m_cfawm_charged}Charged",
+                    "All playing cards",
+                    "are {C:attention,T:m_cfawm_charged}Charged Cards",
                     "{C:blue}#1#{} hand",
                     "every round",
                 },
