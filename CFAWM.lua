@@ -1,4 +1,5 @@
 assert(SMODS.load_file('src/atlases.lua'))()
+assert(SMODS.load_file('src/sounds.lua'))()
 assert(SMODS.load_file('src/patches.lua'))()
 assert(SMODS.load_file('src/suits.lua'))()
 assert(SMODS.load_file('src/ranks.lua'))()

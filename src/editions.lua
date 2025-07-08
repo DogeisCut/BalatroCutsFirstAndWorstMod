@@ -9,7 +9,7 @@ SMODS.Edition {
     in_shop = true,
     weight = 20,
     extra_cost = 3,
-    sound = { sound = "negative", per = 2, vol = 0.4 },
+    sound = { sound = "cfawm_e_acetate", per = 1, vol = 0.4 },
     loc_vars = function(self, info_queue, card)
         return { vars = { card.edition.extra.score_passthrough } }
     end,
@@ -38,7 +38,7 @@ SMODS.Edition {
     in_shop = true,
     weight = 20,
     extra_cost = 2,
-    sound = { sound = "negative", per = 0.5, vol = 0.4 },
+    sound = { sound = "cfawm_e_unkempt", per = 1, vol = 0.4 },
     loc_vars = function(self, info_queue, card)
         return { vars = {  } }
     end,
