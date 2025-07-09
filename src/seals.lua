@@ -1,5 +1,39 @@
 -- SEALS --
 
+-- waaaaa why did you have to be borken on me :(
+-- SMODS.Seal {
+-- 	key = 'Brown',
+-- 	atlas = 'cfawm_enhancers',
+-- 	pos = { x = 0, y = 0 },
+-- 	badge_colour = HEX('a0522d'),
+-- 	calculate = function(self, card, context)
+-- 		if context.discard and context.other_card == card then
+--             G.E_MANAGER:add_event(Event({
+-- 				trigger = 'before',
+--                 delay = 0.0,
+-- 				func = function()
+-- 					local any_selected = nil
+-- 					local this_index = nil
+-- 					for i, playing_card in ipairs(G.hand.cards) do
+-- 						if playing_card == card then
+-- 							this_index = i
+-- 							break
+-- 						end
+-- 					end
+-- 					if this_index and G.hand.cards[this_index + 1] then
+-- 						G.hand:add_to_highlighted(G.hand.cards[this_index + 1], true)
+-- 						play_sound('card1', 1)
+-- 						any_selected = true
+-- 					end
+-- 					if any_selected then G.FUNCS.discard_cards_from_highlighted(nil, true) end
+-- 					return true
+-- 				end
+-- 			}))
+-- 			return { message = "Discarded!", colour = HEX('a0522d') }
+-- 		end
+-- 	end,
+-- }
+
 SMODS.Seal {
 	key = 'Periwinkle',
 	atlas = 'cfawm_enhancers',

@@ -1,5 +1,6 @@
 -- RANKS --
 
+-- hey i think that maybe this is a stupid idea for a rank
 -- SMODS.Rank {
 --     key = 'nan',
 -- 	card_key = 'n',
@@ -12,6 +13,7 @@
 -- 	},
 -- }
 
+-- this too
 -- SMODS.Rank {
 --     key = 'Huge',
 -- 	card_key = 'H',

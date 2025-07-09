@@ -118,6 +118,12 @@ return {
                     "{X:mult,C:white} X#2# {} Mult",
                 },
             },
+            j_cfawm_jasper = {
+                name = "Jasper",
+                text = {
+                    "Hi! I'm Jasper!",
+                },
+            },
         },
         Other = {
             -- cfawm_brown_seal = {
