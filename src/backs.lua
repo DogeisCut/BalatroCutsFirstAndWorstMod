@@ -24,7 +24,7 @@
 --     end,
 -- }
 
--- The seal this is tied to is currently broken, will add later if i ever figure that out.
+-- The seal this is tied to is currently broken, will add later if i ever figure that out...........
 -- SMODS.Back {
 --     key = "brown_seal",
 --     pos = { x = 0, y = 0 },
@@ -51,6 +51,7 @@ SMODS.Back {
     config = { hands = -1 },
     atlas = 'cfawm_backs',
     loc_vars = function(self, info_queue, back)
+        -- okay yeah that's real cool that backs dont support info queue...
         --info_queue[#info_queue+1] = G.P_SEALS.cfawm_Periwinkle
         return { vars = { self.config.hands } }
     end,
@@ -130,6 +131,7 @@ SMODS.Back {
 }
 
 -- Needs extra work to make the packs actually work
+-- but a deck where all the cards are booster packs probably isnt a good idea anyways
 -- SMODS.Back {
 --     key = "packing",
 --     pos = { x = 1, y = 0 },
