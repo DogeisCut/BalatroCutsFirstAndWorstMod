@@ -105,16 +105,17 @@ return {
             j_cfawm_pickle_jar = {
                 name = "Pickle Jar",
                 text = {
-                    "Will turn into a {C:attention}Open Pickle Jar",
-                    "in {C:attention}#1#{} #3# but will gain two",
-                    "blinds if a {C:attention}#2#{} is played",
-                    "{C:inactive}(Poker hand randomized each blind)"
+                    "Will turn into {C:attention}#4#{}",
+                    "in {C:attention}#1#{} #3# but will gain #5#",
+                    "if a {C:attention}#2#{} is played",
+                    "{C:inactive}(Randomized each blind)"
                 },
             },
             j_cfawm_open_pickle_jar = {
                 name = "Open Pickle Jar",
                 text = {
-                    "{X:mult,C:white} X#1# {} Mult",
+                    "{C:mult}+#1#{} Mult",
+                    "{X:mult,C:white} X#2# {} Mult",
                 },
             },
         },

@@ -72,10 +72,18 @@ SMODS.Joker {
     blueprint_compat = false,
     perishable_compat = false,
     cost = 6,
-    config = { extra = { blinds_left = 5, bad_poker_hand = 'High Card' }, },
+    config = { extra = { blinds_left = 5, bad_poker_hand = 'High Card', joker_result = 'j_cfawm_open_pickle_jar', punishment_amount = 1 }, },
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_CENTERS.j_cfawm_open_pickle_jar
-         return { vars = { card.ability.extra.blinds_left, localize(card.ability.extra.bad_poker_hand, 'poker_hands'), card.ability.extra.blinds_left == 1 and "blind" or "blinds" } }
+        info_queue[#info_queue+1] = G.P_CENTERS[card.ability.extra.joker_result]
+        return {
+            vars = {
+                card.ability.extra.blinds_left,
+                localize(card.ability.extra.bad_poker_hand, 'poker_hands'),
+                card.ability.extra.blinds_left == 1 and "round" or "rounds",
+                localize { type = "name_text", set = "Joker", key = card.ability.extra.joker_result },
+                card.ability.extra.punishment_amount == 1 and "a round" or card.ability.extra.punishment_amount .. " rounds"
+            },
+        }
     end,
     calculate = function(self, card, context)
         if context.setting_blind and not context.blueprint then
@@ -113,15 +121,17 @@ SMODS.Joker {
             card.ability.extra.bad_poker_hand = pseudorandom_element(_poker_hands, 'pickle_jar')
 
             -- decrease blind and potentially open :3
-            card.ability.extra.blinds_left = card.ability.extra.blinds_left - 1
+            card.ability.extra.blinds_left = card.ability.extra.blinds_left - card.ability.extra.punishment_amount
             if card.ability.extra.blinds_left <= 0 then
                 card:set_ability("j_cfawm_open_pickle_jar")
                 return { message = 'Opened!', colour = G.C.GREEN }
+            else
+                return { message = 'Opening...', colour = G.C.YELLOW }
             end
         end
         -- punish for playing the bad hand
         if context.before and context.main_eval and context.scoring_name == card.ability.extra.bad_poker_hand then
-            card.ability.extra.blinds_left = card.ability.extra.blinds_left + 2
+            card.ability.extra.blinds_left = card.ability.extra.blinds_left + 1
             return { message = 'Bad Hand!', colour = G.C.RED }
         end
     end
@@ -137,14 +147,15 @@ SMODS.Joker {
     in_pool = function()
         return false
     end,
-    config = { extra = { xmult = 5 }, },
+    config = { extra = { mult = 5, xmult = 5 }, },
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.xmult } }
+        return { vars = { card.ability.extra.mult, card.ability.extra.xmult } }
     end,
     calculate = function(self, card, context)
         if context.joker_main then
             return {
-                xmult = card.ability.extra.xmult
+                mult = card.ability.extra.mult,
+                xmult = card.ability.extra.xmult,
             }
         end
     end
