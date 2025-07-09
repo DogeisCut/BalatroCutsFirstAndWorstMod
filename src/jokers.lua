@@ -6,9 +6,9 @@ SMODS.Joker {
     key = "digit_joker",
     atlas = 'cfawm_jokers',
     pos = { x = 0, y = 0 },
-    rarity = 2,
+    rarity = 1,
     blueprint_compat = true,
-    cost = 5,
+    cost = 4,
     config = { extra = { zero_mult = 10 }, },
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.zero_mult } }
