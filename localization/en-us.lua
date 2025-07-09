@@ -85,7 +85,7 @@ return {
                 name = "Digit Joker",
                 text = {
                     "Each played {C:attention}Zero{} gives",
-                    "{X:mult,C:white} X#1# {} Mult when scored",
+                    "{C:mult}+#1#{} Mult when scored",
                 },
             },
             j_cfawm_sine_wave = {

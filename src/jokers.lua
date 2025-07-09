@@ -6,18 +6,18 @@ SMODS.Joker {
     key = "digit_joker",
     atlas = 'cfawm_jokers',
     pos = { x = 0, y = 0 },
-    rarity = 3,
+    rarity = 2,
     blueprint_compat = true,
-    cost = 8,
-    config = { extra = { zero_x_mult = 10 }, },
+    cost = 5,
+    config = { extra = { zero_mult = 10 }, },
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.zero_x_mult } }
+        return { vars = { card.ability.extra.zero_mult } }
     end,
     calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play and
             context.other_card:get_id() == SMODS.Ranks['cfawm_0'].id then
             return {
-                x_mult = card.ability.extra.zero_x_mult
+                mult = card.ability.extra.zero_mult
             }
         end
     end
@@ -30,26 +30,26 @@ SMODS.Joker {
     rarity = 1,
     blueprint_compat = true,
     cost = 5,
-    config = { extra = { max = 25, min = 0, sine_mult = 0, sine_mult_string = "+sine(seconds) ", time_spent = 0 } },
+    config = { extra = { max = 500, min = 0, sine_chips = 0, sine_chips_string = "+sine(seconds) ", time_spent = 0 } },
     loc_vars = function(self, info_queue, card)
         main_end = {
-            { n = G.UIT.T, config = { ref_table = card.ability.extra, ref_value = "sine_mult_string", colour = G.C.MULT, scale = 0.32 } },
-            { n = G.UIT.T, config = { text = "Mult", colour = G.C.UI.TEXT_DARK, scale = 0.32 } },
+            { n = G.UIT.T, config = { ref_table = card.ability.extra, ref_value = "sine_chips_string", colour = G.C.CHIPS, scale = 0.32 } },
+            { n = G.UIT.T, config = { text = "Chips", colour = G.C.UI.TEXT_DARK, scale = 0.32 } },
         }
         return { main_end = main_end }
     end,
     update = function(self, card, dt)
         if G.STATE ~= G.STATES.HAND_PLAYED and not G.SETTINGS.paused then
             card.ability.extra.time_spent = card.ability.extra.time_spent + dt
-            card.ability.extra.sine_mult = card.ability.extra.min + ((math.sin(card.ability.extra.time_spent) + 1) / 2) * (card.ability.extra.max - card.ability.extra.min)
-            card.ability.extra.sine_mult = math.floor((card.ability.extra.sine_mult * 100) + 0.5) / 100
-            card.ability.extra.sine_mult_string = '+' .. card.ability.extra.sine_mult .. " "
+            card.ability.extra.sine_chips = card.ability.extra.min + ((math.sin(card.ability.extra.time_spent) + 1) / 2) * (card.ability.extra.max - card.ability.extra.min)
+            card.ability.extra.sine_chips = math.floor((card.ability.extra.sine_chips * 1) + 0.5) / 1
+            card.ability.extra.sine_chips_string = '+' .. card.ability.extra.sine_chips .. " "
         end
     end,
     calculate = function(self, card, context)
         if context.joker_main then
             return {
-                mult = card.ability.extra.sine_mult
+                chips = card.ability.extra.sine_chips
             }
         end
     end
@@ -58,14 +58,14 @@ SMODS.Joker {
 -- joker that occasionally puts playing cards in a storage area and has mult for how many are in there
 -- joker that has a small chance to replace a played card with itself (still in your deck with a suit and rank) and it has like a mult and chip bonus or something but gets stronger the more of itself there are
 -- joker with like +80 mult but it always self destructs after 3 rounds, but it gets another round of life for every consumable used and card destroyed
--- joker that has a rarity that is random each run (except legendary) and gets a mult bonus for each joker in your area with the same rarity
+-- joker that has a rarity that is random each run (except legendary) and gets a mult bonus for each joker in your joker area with the same rarity
 -- joker that makes anything that self destructs without a chance take two self destructs before actually getting destroyed, also makes jokers and like glass cards (with the 1 in whataver chance of self destructing) 33% less likely to do so
 -- joker that makes all planet cards have like a slim chance to ALSO upgrade your most played hand (including the same hand planet cards)
 -- pickle jar: turns into "open pickle jar" in 4 blinds, but will gain two blind-waits if you play the randomized-per-blind hand on the card
 SMODS.Joker {
     key = "pickle_jar",
     atlas = 'cfawm_jokers',
-    pos = { x = 0, y = 0 },
+    pos = { x = 2, y = 0 },
     rarity = 2,
     blueprint_compat = false,
     perishable_compat = false,
