@@ -53,7 +53,15 @@ return {
                 },
             }
         },
-        Blind = {},
+        Blind = {
+            bl_cfawm_angle = {
+                name = "The Angle",
+                text = {
+                    "All Triangle cards",
+                    "are debuffed",
+                },
+            },
+        },
         Edition = {
             e_cfawm_acetate = {
                 name = "Acetate",

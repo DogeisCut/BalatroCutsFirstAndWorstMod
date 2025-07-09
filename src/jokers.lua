@@ -27,10 +27,10 @@ SMODS.Joker {
     key = "sine_wave",
     atlas = 'cfawm_jokers',
     pos = { x = 1, y = 0 },
-    rarity = 1,
+    rarity = 2,
     blueprint_compat = true,
     cost = 5,
-    config = { extra = { max = 500, min = 0, sine_chips = 0, sine_chips_string = "+sine(seconds) ", time_spent = 0 } },
+    config = { extra = { max = 150, min = 0, sine_chips = 0, sine_chips_string = "+sine(seconds) ", time_spent = 0 } },
     loc_vars = function(self, info_queue, card)
         main_end = {
             { n = G.UIT.T, config = { ref_table = card.ability.extra, ref_value = "sine_chips_string", colour = G.C.CHIPS, scale = 0.32 } },
@@ -61,16 +61,18 @@ SMODS.Joker {
 -- joker that has a rarity that is random each run (except legendary) and gets a mult bonus for each joker in your joker area with the same rarity
 -- joker that makes anything that self destructs without a chance take two self destructs before actually getting destroyed, also makes jokers and like glass cards (with the 1 in whataver chance of self destructing) 33% less likely to do so
 -- joker that makes all planet cards have like a slim chance to ALSO upgrade your most played hand (including the same hand planet cards)
+-- optical illusion: the first card in a Roundabout will always be counted as its own suit
+-- update four fingers to work with roundabout and even funny (no 0)
 -- pickle jar: turns into "open pickle jar" in 4 blinds, but will gain two blind-waits if you play the randomized-per-blind hand on the card
 SMODS.Joker {
     key = "pickle_jar",
     atlas = 'cfawm_jokers',
-    pos = { x = 2, y = 0 },
-    rarity = 2,
+    pos = { x = 3, y = 0 },
+    rarity = 3,
     blueprint_compat = false,
     perishable_compat = false,
-    cost = 5,
-    config = { extra = { blinds_left = 4, bad_poker_hand = 'High Card' }, },
+    cost = 6,
+    config = { extra = { blinds_left = 5, bad_poker_hand = 'High Card' }, },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS.j_cfawm_open_pickle_jar
          return { vars = { card.ability.extra.blinds_left, localize(card.ability.extra.bad_poker_hand, 'poker_hands'), card.ability.extra.blinds_left == 1 and "blind" or "blinds" } }
@@ -135,7 +137,7 @@ SMODS.Joker {
     in_pool = function()
         return false
     end,
-    config = { extra = { xmult = 12 }, },
+    config = { extra = { xmult = 5 }, },
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.xmult } }
     end,

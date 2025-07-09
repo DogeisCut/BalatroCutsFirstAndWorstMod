@@ -11,3 +11,5 @@ SMODS.Consumable {
         return { vars = { card.ability.max_highlighted, localize { type = 'name_text', set = 'Enhanced', key = card.ability.mod_conv } } }
     end
 }
+
+-- update wheel of fortune for new editions
