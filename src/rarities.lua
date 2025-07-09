@@ -1,0 +1,8 @@
+-- SMODS.Rarity {
+--     key = "Guaranteed",
+--     default_weight = 0.95,
+--     badge_colour = HEX('00eaff'),
+--     get_weight = function(self, weight, object_type)
+--         return weight
+--     end,
+-- }

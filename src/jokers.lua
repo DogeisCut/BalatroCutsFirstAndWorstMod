@@ -64,6 +64,7 @@ SMODS.Joker {
 -- optical illusion: the first card in a Roundabout will always be counted as its own suit
 -- update four fingers to work with roundabout and even funny (no 0)
 -- pickle jar: turns into "open pickle jar" in 4 blinds, but will gain two blind-waits if you play the randomized-per-blind hand on the card
+-- obligatory mod creator turns oc into legendary joker (jasper)
 SMODS.Joker {
     key = "pickle_jar",
     atlas = 'cfawm_jokers',
@@ -158,5 +159,23 @@ SMODS.Joker {
                 xmult = card.ability.extra.xmult,
             }
         end
+    end
+}
+
+SMODS.Joker {
+    key = "jasper",
+    unlocked = false,
+    blueprint_compat = true,
+    atlas = 'cfawm_jokers',
+    pos = { x = 0, y = 0 },
+    soul_pos = { x = 2, y = 0 },
+    rarity = 4,
+    cost = 20,
+    config = { extra = { }, },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { } }
+    end,
+    calculate = function(self, card, context)
+
     end
 }

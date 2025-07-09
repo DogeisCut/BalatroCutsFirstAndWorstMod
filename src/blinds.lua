@@ -7,3 +7,8 @@ SMODS.Blind {
     boss = { min = 1 },
     boss_colour = HEX("b9cb92")
 }
+
+-- ?: The first and last card drawn are always drawn face down.
+-- ??: Blind has no reward
+-- ???: Joker chips do not get added.
+--
