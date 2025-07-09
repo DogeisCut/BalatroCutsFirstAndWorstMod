@@ -82,3 +82,10 @@ SMODS.Atlas {
 	px = 71,
 	py = 95,
 }
+
+SMODS.Atlas {
+	key = 'cfawm_stickers',
+	path = "cfawm_stickers.png",
+	px = 71,
+	py = 95,
+}

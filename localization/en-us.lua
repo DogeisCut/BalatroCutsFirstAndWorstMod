@@ -145,6 +145,12 @@ return {
                     "to hand after drawing"
                 },
             },
+            cfawm_heavy = {
+                name = "Heavy",
+                text = {
+                    "{C:attention}-1{} Joker Slot",
+                },
+            },
         },
         Planet = {
             ["c_cfawm_hd_189733b"] = {
@@ -211,7 +217,8 @@ return {
             cfawm_periwinkle_seal = "Periwinkle Seal",
             cfawm_cardboard_seal = "Cardboard Seal",
             cfawm_acetate = "Acetate",
-            cfawm_unkempt = "Unkempt"
+            cfawm_unkempt = "Unkempt",
+            cfawm_heavy = "Heavy",
         },
         poker_hand_descriptions = {
             cfawm_Funny = {
