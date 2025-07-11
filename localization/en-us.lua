@@ -29,6 +29,7 @@ return {
                 name = "Deck of Transparency",
                 text = {
                     "All cards are {C:dark_edition,T:e_cfawm_acetate}Acetate Cards",
+                    "{X:attention,C:white} x#3# {} Ante scaling",
                     "{C:red}#1#{} discard",
                     "{C:blue}#2#{} hand",
                     "every round",
@@ -38,6 +39,7 @@ return {
                 name = "Deck of Filth",
                 text = {
                     "All cards are {C:dark_edition,T:e_cfawm_unkempt}Unkempt Cards",
+                    "{X:attention,C:white} x#3# {} Ante scaling",
                     "{C:red}#1#{} discard",
                     "{C:blue}#2#{} hand",
                     "every round",
@@ -48,6 +50,7 @@ return {
                 text = {
                     "All playing cards",
                     "are {C:attention,T:m_cfawm_charged}Charged Cards",
+                    "{X:attention,C:white} x#2# {} Ante scaling",
                     "{C:blue}#1#{} hand",
                     "every round",
                 },
@@ -74,7 +77,9 @@ return {
              e_cfawm_unkempt = {
                 name = "Unkempt",
                 text = {
-                    "Doesn't do much at the moment"
+                    "{C:mult}+#1#{} Mult",
+                    "{C:attention}#4#{} seperate {C:green}#2# in #3#{} chances",
+                    "to give double and add {C:attention}#5#{} to the mult",
                 },
             },
         },

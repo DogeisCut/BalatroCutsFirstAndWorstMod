@@ -91,11 +91,11 @@ SMODS.Back {
 SMODS.Back {
     key = "acetate",
     pos = { x = 3, y = 0 },
-    config = { discards = -1, hands = -1 },
+    config = { discards = -1, hands = -1, ante_scaling = 2 },
     atlas = 'cfawm_backs',
     loc_vars = function(self, info_queue, back)
         --info_queue[#info_queue+1] = G.P_CENTERS.e_cfawm_acetate
-        return { vars = { self.config.discards, self.config.hands } }
+        return { vars = { self.config.discards, self.config.hands, self.config.ante_scaling } }
     end,
     apply = function(self, back)
         G.E_MANAGER:add_event(Event({
@@ -110,13 +110,34 @@ SMODS.Back {
 }
 
 SMODS.Back {
+    key = "unkempt",
+    pos = { x = 3, y = 0 },
+    config = { discards = -1, hands = -1, ante_scaling = 2 },
+    atlas = 'cfawm_backs',
+    loc_vars = function(self, info_queue, back)
+        --info_queue[#info_queue+1] = G.P_CENTERS.e_cfawm_unkempt
+        return { vars = { self.config.discards, self.config.hands, self.config.ante_scaling } }
+    end,
+    apply = function(self, back)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                for _, card in pairs(G.playing_cards) do
+					card:set_edition('e_cfawm_unkempt', true, true)
+                end
+                return true
+            end
+        }))
+    end,
+}
+
+SMODS.Back {
     key = "charged",
     pos = { x = 4, y = 0 },
-    config = { hands = -1 },
+    config = { hands = -1, ante_scaling = 1.5 },
     atlas = 'cfawm_backs',
     loc_vars = function(self, info_queue, back)
         --info_queue[#info_queue+1] = G.P_CENTERS.m_cfawm_charged
-        return { vars = { self.config.hands } }
+        return { vars = { self.config.hands, self.config.ante_scaling } }
     end,
     apply = function(self, back)
         G.E_MANAGER:add_event(Event({

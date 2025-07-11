@@ -164,7 +164,7 @@ SMODS.Joker {
 
 SMODS.Joker {
     key = "jasper",
-    unlocked = false,
+    --unlocked = false,
     blueprint_compat = true,
     atlas = 'cfawm_jokers',
     pos = { x = 0, y = 0 },
