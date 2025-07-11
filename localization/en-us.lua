@@ -113,7 +113,7 @@ return {
                     "Will turn into {C:attention}#4#{}",
                     "in {C:attention}#1#{} #3# but will gain #5#",
                     "if a {C:attention}#2#{} is played",
-                    "{C:inactive}(Randomized each blind)"
+                    "{C:inactive}(Randomized each round)"
                 },
             },
             j_cfawm_open_pickle_jar = {
