@@ -82,7 +82,7 @@ SMODS.Joker {
                 localize(card.ability.extra.bad_poker_hand, 'poker_hands'),
                 card.ability.extra.blinds_left == 1 and "round" or "rounds",
                 localize { type = "name_text", set = "Joker", key = card.ability.extra.joker_result },
-                card.ability.extra.punishment_amount == 1 and "a round" or card.ability.extra.punishment_amount .. " rounds"
+                card.ability.extra.punishment_amount == 1 and "a round" or ("{C:attention}" .. card.ability.extra.punishment_amount .. "{} rounds")
             },
         }
     end,
