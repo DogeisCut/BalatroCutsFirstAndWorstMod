@@ -1,0 +1,3 @@
+- Config
+    - Disable Triangle Suit
+    - Disable Peasnt and 0 cards (and any jokers that rely on them)
