@@ -37,7 +37,7 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     vec2 safe_ba = max(texture_details.ba, vec2(0.0001));
     vec2 uv = (((texture_coords)*(image_details)) - texture_details.xy*safe_ba) / safe_ba;
 
-    number unkempt_strength = 0.5 + (unkempt.r * 0.0);
+    number unkempt_strength = 0.5 + (unkempt.r * 0.01);
 
     // ---- Dirt & Grime ----
     number p1 = sin(uv.x * 25.0 + uv.y * 35.0 + time * 0.3 + unkempt_strength * 15.0);
