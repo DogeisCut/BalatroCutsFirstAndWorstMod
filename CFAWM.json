@@ -10,7 +10,6 @@
 	"badge_text_colour": "ffea00",
 	"version": "1.0.0",
 	"dependencies": [
-        "Steamodded (>=1.*)",
         "Lovely (>=0.6)"
     ]
 }
